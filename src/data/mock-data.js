@@ -1,0 +1,65 @@
+export const STUDENT = {
+  name: "Ishaan Verma",
+  handle: "@ishaanv",
+  college: "IIIT Nagpur",
+  track: "Full-Stack Web Development",
+  avatarInitials: "IV",
+  currentStreak: 11,
+  longestStreak: 14,
+  startedOn: "2026-06-29",
+  totalDays: 60,
+  daysCompleted: 11,
+  daysMissed: 1,
+  rank: 47,
+  totalStudents: 1842,
+  badges: [
+    { id: "b1", label: "Week One Wired", icon: "flame", earned: true },
+    { id: "b2", label: "10-Day Streak", icon: "bolt", earned: true },
+    { id: "b3", label: "First Deploy", icon: "rocket", earned: true },
+    { id: "b4", label: "Halfway There", icon: "flag", earned: false },
+    { id: "b5", label: "30-Day Streak", icon: "bolt", earned: false },
+    { id: "b6", label: "Challenge Finisher", icon: "trophy", earned: false },
+  ],
+};
+
+export const CHAIN = Array.from({ length: 60 }, (_, i) => {
+  const day = i + 1;
+  if (day <= 6) return { day, status: "done" };
+  if (day === 7) return { day, status: "missed" };
+  if (day >= 8 && day <= 11) return { day, status: "done" };
+  if (day === 12) return { day, status: "today" };
+  return { day, status: "upcoming" };
+});
+
+export const LEADERBOARD = [
+  { rank: 1, name: "Priya Ramaswamy", college: "BITS Pilani", streak: 12, initials: "PR" },
+  { rank: 2, name: "Arjun Mehta", college: "NIT Trichy", streak: 12, initials: "AM" },
+  { rank: 3, name: "Sneha Kulkarni", college: "VJTI Mumbai", streak: 12, initials: "SK" },
+  { rank: 4, name: "Rohan Das", college: "IIT Guwahati", streak: 11, initials: "RD" },
+  { rank: 5, name: "Ananya Iyer", college: "PSG Coimbatore", streak: 11, initials: "AI" },
+];
+
+export const TASKS = {
+  1: { title: "Set up your dev environment", brief: "Install Node, Git, and VS Code. Push an empty repo called `abtalks-fullstack` with a README describing your 60-day plan.", requirements: ["Node.js + npm installed and verified", "Git configured with your GitHub email", "Repo created and pushed with a README"], estimatedTime: "45 min" },
+  7: { title: "Style your landing page", brief: "Missed — no submission logged for this day.", requirements: [] },
+  11: { title: "Connect a database", brief: "Wire up SQLite or Postgres to your Express backend. Store form submissions from Day 10 in a real table.", requirements: ["Database connected and reachable", "One table with at least 3 columns", "Insert + read working end to end"] },
+  12: {
+    title: "Build a REST API with authentication",
+    brief:
+      "Today you're adding a login layer to the backend you've been building since Day 8. Build a REST API with two protected routes and one public route. Use JWTs for auth — no third-party auth providers today, you're doing this by hand so you understand what's happening under the hood.",
+    requirements: [
+      "POST /login issuing a signed JWT on valid credentials",
+      "GET /profile — protected, returns 401 without a valid token",
+      "GET /health — public, no auth required",
+      "Passwords hashed with bcrypt, never stored in plain text",
+    ],
+    starterNotes:
+      "Use jsonwebtoken + bcrypt if you're on Node. Store your JWT secret in .env — commit a .env.example instead, not the real file. Test protected routes with Postman or curl before you call it done.",
+    estimatedTime: "2–3 hrs",
+  },
+  13: { title: "Add role-based access control", brief: "Extend yesterday's auth so /admin routes only work for an admin role.", requirements: [] },
+};
+
+export function getTask(day) {
+  return TASKS[day] || null;
+}
