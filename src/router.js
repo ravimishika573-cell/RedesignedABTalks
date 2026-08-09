@@ -23,7 +23,7 @@ export function navigate(path) {
 }
 
 let afterRenderHook = () => {};
-window.setAfterRenderHook = (fn) => (afterRenderHook = fn);
+globalThis.setAfterRenderHook = (fn) => (afterRenderHook = fn);
 
 export function startRouter(mountEl) {
   function resolve() {
@@ -34,7 +34,7 @@ export function startRouter(mountEl) {
         const params = {};
         r.paramNames.forEach((name, i) => (params[name] = match[i + 1]));
         mountEl.innerHTML = r.render(params);
-        window.scrollTo(0, 0);
+        globalThis.scrollTo(0, 0);
         document.querySelectorAll("[data-nav]").forEach((el) => {
           el.classList.toggle("is-active", el.getAttribute("data-nav") === path);
         });
@@ -45,6 +45,6 @@ export function startRouter(mountEl) {
     mountEl.innerHTML = `<div style="padding:40px;text-align:center;color:var(--text-mid)">Page not found.</div>`;
   }
 
-  window.addEventListener("hashchange", resolve);
+  globalThis.addEventListener("hashchange", resolve);
   resolve();
 }
