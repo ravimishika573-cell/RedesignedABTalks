@@ -9,7 +9,7 @@ route("/day/:id", ChallengeDayPage);
 
 const mount = document.getElementById("app");
 
-window.setAfterRenderHook((path) => {
+globalThis.setAfterRenderHook((path) => {
   if (path === "/") initHeroChain();
   if (path.startsWith("/day/")) initChallengeDayForm();
 });
