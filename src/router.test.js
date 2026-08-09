@@ -1,4 +1,4 @@
-import { route, currentPath } from "./router.js";
+import { currentPath } from "./router.js";
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
 
 Deno.test("currentPath strips query string", () => {
